@@ -15,6 +15,15 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_imagePathButton_clicked();
+
+    void on_file1PathButton_clicked();
+
+    void on_file2PathButton_clicked();
+
+    void on_applyButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
