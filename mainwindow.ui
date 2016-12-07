@@ -37,7 +37,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>File 1</string>
+     <string>Textures</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -50,7 +50,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>File 2</string>
+     <string>Objects</string>
     </property>
    </widget>
    <widget class="QPushButton" name="applyButton">
@@ -66,7 +66,7 @@
      <string>Apply</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="file2Path">
+   <widget class="QLineEdit" name="objectsPath">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -76,7 +76,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="file1Path">
+   <widget class="QLineEdit" name="texturesPath">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -109,7 +109,7 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="file1PathButton">
+   <widget class="QPushButton" name="texturesPathButton">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -122,7 +122,7 @@
      <string>...</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="file2PathButton">
+   <widget class="QPushButton" name="objectsPathButton">
     <property name="geometry">
      <rect>
       <x>340</x>

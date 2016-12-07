@@ -18,9 +18,9 @@ public:
 private slots:
     void on_imagePathButton_clicked();
 
-    void on_file1PathButton_clicked();
+    void on_texturesPathButton_clicked();
 
-    void on_file2PathButton_clicked();
+    void on_objectsPathButton_clicked();
 
     void on_applyButton_clicked();
 

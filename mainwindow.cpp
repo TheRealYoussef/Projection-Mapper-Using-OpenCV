@@ -26,9 +26,9 @@ void MainWindow::on_imagePathButton_clicked() {
  * and puts the path of the file selected in the
  * respective line edit
 */
-void MainWindow::on_file1PathButton_clicked() {
+void MainWindow::on_texturesPathButton_clicked() {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Images (*.png *.xpm *.jpg)")); //Open file dialog
-    ui->file1Path->setText(fileName); //Put the path in the line edit
+    ui->texturesPath->setText(fileName); //Put the path in the line edit
 }
 
 /*
@@ -36,9 +36,9 @@ void MainWindow::on_file1PathButton_clicked() {
  * and puts the path of the file selected in the
  * respective line edit
 */
-void MainWindow::on_file2PathButton_clicked() {
+void MainWindow::on_objectsPathButton_clicked() {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Images (*.png *.xpm *.jpg)")); //Open file dialog
-    ui->file2Path->setText(fileName); //Put the path in the line edit
+    ui->objectsPath->setText(fileName); //Put the path in the line edit
 }
 
 /*
