@@ -1,17 +1,18 @@
 #include "ccl.h"
-#include <qdebug.h>
 #include <fstream>
 
 void CCL::applyCCL(const Mat& image) {
-    labels.resize(image.rows, vector<int>(image.cols, 0));
+    labels.resize(image.rows, vector<int>(image.cols, 0)); //Initialize labels with 0's
 
-    vector<int> equalities(1, 0);
-    int label = 1;
+    vector<int> equalities(1, 0); //equalities[l] = e means that the lowest label connected to l is e
+    int label = 1; //Start labeling with 1
 
+    //Loop on the image
     for (int i = 0; i < image.rows; ++i) {
         for (int j = 0; j < image.cols; ++j) {
             Vec3b bgr = image.at<Vec3b>(i, j);
-            if (bgr[0] != 0 || bgr[1] != 0 || bgr[2] != 0) {
+            if (bgr[0] != 0 || bgr[1] != 0 || bgr[2] != 0) { //If the pixel is foreground (not black)
+                //Find the lowest neighbouring label that is not 0
                 int lowestLabel = label;
                 if (i - 1 >= 0) {
                     if (equalities[labels[i - 1][j]] != 0)
@@ -26,12 +27,13 @@ void CCL::applyCCL(const Mat& image) {
                 if (j - 1 >= 0)
                     if (equalities[labels[i][j - 1]] != 0)
                         lowestLabel = min(lowestLabel, equalities[labels[i][j - 1]]);
-                if (lowestLabel == label) {
-                    labels[i][j] = label++;
-                    equalities.push_back(labels[i][j]);
+                if (lowestLabel == label) { //If there are no neighbouring labels that are not 0
+                    labels[i][j] = label++; //Put a new label
+                    equalities.push_back(labels[i][j]); //equalities[label] = label
                 }
-                else {
-                    labels[i][j] = lowestLabel;
+                else { //There are one or more neighbouring labels that are not 0
+                    labels[i][j] = lowestLabel; //Assign the lowest neighbouring label
+                    //Update the equalities of the neighbouring labels
                     if (i - 1 >= 0) {
                         if (equalities[labels[i - 1][j]] != 0 && equalities[labels[i - 1][j]] != lowestLabel)
                             equalities[labels[i - 1][j]] = lowestLabel;
@@ -50,40 +52,7 @@ void CCL::applyCCL(const Mat& image) {
         }
     }
 
-    numberOfLabels = 0;
-
-    for (int i = 0; i < labels.size(); ++i) {
-        for (int j = 0; j < labels[i].size(); ++j) {
-            numberOfLabels = max(numberOfLabels, labels[i][j]);
-        }
-    }
-
-    ofstream out2("out2.txt");
-
-    for (int i = 0; i < image.rows; ++i) {
-        for (int j = 0; j < image.cols; ++j) {
-            Vec3b bgr = image.at<Vec3b>(i, j);
-            out2 << "(" << (int)bgr[0] << ", " << (int)bgr[1] << ", " << (int)bgr[2] << ")";
-            if (j < image.cols - 1)
-                out2 << ' ';
-            else
-                out2 << '\n';
-        }
-    }
-
-    ofstream out("out.txt");
-
-    for (int i = 0; i < labels.size(); ++i) {
-        for (int j = 0; j < labels[i].size(); ++j) {
-            out << labels[i][j];
-            if (j < labels[i].size() - 1)
-                out << ' ';
-            else
-                out << '\n';
-        }
-    }
-
-    qDebug() << numberOfLabels;
+    countLabels(); //Get the number of labels
 }
 
 int CCL::getNumberOfLabels() const {
@@ -92,4 +61,14 @@ int CCL::getNumberOfLabels() const {
 
 vector<vector<int> > CCL::getLabels() const {
     return labels;
+}
+
+void CCL::countLabels() {
+    numberOfLabels = 0;
+
+    for (int i = 0; i < labels.size(); ++i) {
+        for (int j = 0; j < labels[i].size(); ++j) {
+            numberOfLabels = max(numberOfLabels, labels[i][j]);
+        }
+    }
 }

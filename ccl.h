@@ -25,6 +25,8 @@ private:
     int numberOfLabels;
 
     vector<vector<int> > labels;
+
+    void countLabels();
 };
 
 #endif // CCL_H
