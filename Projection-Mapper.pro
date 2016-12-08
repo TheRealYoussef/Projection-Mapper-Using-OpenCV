@@ -15,11 +15,15 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     ccl.cpp \
-    corresponder.cpp
+    corresponder.cpp \
+    boundingboxescreator.cpp
 
 HEADERS  += mainwindow.h \
     ccl.h \
-    corresponder.h
+    corresponder.h \
+    boundingboxescreator.h \
+    boundingbox.h \
+    coordinateextremes.h
 
 FORMS    += mainwindow.ui
 
