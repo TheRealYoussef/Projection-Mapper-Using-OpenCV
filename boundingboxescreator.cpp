@@ -18,7 +18,19 @@ void BoundingBoxesCreator::createBoundingBoxes(const vector<vector<int> >& label
 
         for (int i = 1; i < (int)coordinatesExtremes.size(); ++i) {
             boundingBoxes.push_back(BoundingBox(Point(coordinatesExtremes[i].getMinX(), coordinatesExtremes[i].getMinY()), Point(coordinatesExtremes[i].getMaxX(), coordinatesExtremes[i].getMinY()), Point(coordinatesExtremes[i].getMaxX(), coordinatesExtremes[i].getMaxY()), Point(coordinatesExtremes[i].getMinX(), coordinatesExtremes[i].getMaxY())));
-            objects.push_back(image(Rect(coordinatesExtremes[i].getMinX(), coordinatesExtremes[i].getMinY(), coordinatesExtremes[i].getMaxX() - coordinatesExtremes[i].getMinX(), coordinatesExtremes[i].getMaxY() - coordinatesExtremes[i].getMinY())));
+
+            vector<Point> objectTemp;
+
+            objectTemp.push_back(boundingBoxes[boundingBoxes.size() - 1].getCorner1());
+            objectTemp.push_back(boundingBoxes[boundingBoxes.size() - 1].getCorner2());
+            objectTemp.push_back(boundingBoxes[boundingBoxes.size() - 1].getCorner3());
+            objectTemp.push_back(boundingBoxes[boundingBoxes.size() - 1].getCorner4());
+            double objectArea = contourArea(objectTemp); //Returns the area of the four points
+
+            if (objectArea < 10000.0)
+                boundingBoxes.pop_back();
+            else
+                objects.push_back(image(Rect(coordinatesExtremes[i].getMinX(), coordinatesExtremes[i].getMinY(), coordinatesExtremes[i].getMaxX() - coordinatesExtremes[i].getMinX(), coordinatesExtremes[i].getMaxY() - coordinatesExtremes[i].getMinY())));
         }
     }
 }

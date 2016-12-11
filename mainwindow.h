@@ -16,7 +16,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_imagePathButton_clicked();
+    void on_scenePathButton_clicked();
 
     void on_texturesPathButton_clicked();
 

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Image</string>
+     <string>Scene</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -86,7 +86,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="imagePath">
+   <widget class="QLineEdit" name="scenePath">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -96,7 +96,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="imagePathButton">
+   <widget class="QPushButton" name="scenePathButton">
     <property name="geometry">
      <rect>
       <x>340</x>

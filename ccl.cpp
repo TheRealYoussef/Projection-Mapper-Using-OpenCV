@@ -66,8 +66,8 @@ vector<vector<int> > CCL::getLabels() const {
 void CCL::countLabels() {
     numberOfLabels = 0;
 
-    for (int i = 0; i < labels.size(); ++i) {
-        for (int j = 0; j < labels[i].size(); ++j) {
+    for (int i = 0; i < (int)labels.size(); ++i) {
+        for (int j = 0; j < (int)labels[i].size(); ++j) {
             numberOfLabels = max(numberOfLabels, labels[i][j]);
         }
     }
